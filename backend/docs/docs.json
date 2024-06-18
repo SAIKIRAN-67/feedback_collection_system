@@ -1,0 +1,599 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Feedback Collection System API Documentation",
+    "description": "This is the API documentation for the Feedback Collection System",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000",
+      "description": "Development server"
+    },
+    {
+      "url": "https://zidio-internship.herokuapp.com",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": "User related routes"
+    },
+    {
+      "name": "Form",
+      "description": "Form related routes"
+    },
+    {
+      "name": "Submission",
+      "description": "Submission related routes"
+    }
+  ],
+  "paths": {
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "role": {
+                    "example": "any"
+                  },
+                  "username": {
+                    "example": "any"
+                  },
+                  "email": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/profile": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+              }
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+              }
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  },
+                  "username": {
+                    "example": "any"
+                  },
+                  "avatar": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "/api/forms/": {
+      "get": {
+        "tags": [
+          "Form"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+              }
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Form"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+              }
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "description": {
+                    "example": "any"
+                  },
+                  "fields": {
+                    "example": "any"
+                  },
+                  "ratingType": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/forms/{id}": {
+      "get": {
+        "tags": [
+          "Form"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+              }
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Form"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+              }
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Form"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "/api/submissions/": {
+      "get": {
+        "tags": [
+          "Submission"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+              }
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Submission"
+        ],
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+              }
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "formId": {
+                    "example": "any"
+                  },
+                  "owner": {
+                    "example": "any"
+                  },
+                  "data": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/submissions/{id}": {
+      "get": {
+        "tags": [
+          "Submission"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+              }
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Submission"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "description": "Enter JWT token",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "name": "Zidio Internship"
+}
