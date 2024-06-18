@@ -1,2 +1,2 @@
-# zidio_g25_feedback_app
-This repo contains the Feedback Collection System built using the MERN stack for Zidio Internship, Group 25.
+# zidio_feedback_collection_system
+This repo contains the Feedback Collection System built using the MERN stack for Zidio Internship, 
